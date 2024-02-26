@@ -1,5 +1,6 @@
 - name: "Checkup"
   hosts: all
+  gather_facts: no
   tasks:
   - name: "uptime"
     command: uptime
