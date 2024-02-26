@@ -1,0 +1,32 @@
+---
+- name: zabbix_template_mapping
+  hosts: all
+  gather_facts: no
+  vars:
+    zabbixhost: "zabbix.it.ku.dk"
+    zabbixhostport: "10051"
+    zabbixtoken: "b08681d021c02926da0ce25783c52cfe295f20b2e8d13269ac58214e8d428940"
+    templatetoadd: "ICMP Ping"
+    templatetoremove: "Template Horizion View Services"
+    systemroletemplate: "Template dashdb"
+    hostname: "demohostrks221"
+
+  tasks:
+  - name: "Link template to system role"
+    delegate_to: localhost
+    zabbix_wrapper:
+      hostname: "{{ zabbixhost }}"
+      token: "{{ zabbixtoken }}"
+      task: "link_template"
+      params: 
+        systemrole: "{{ systemroletemplate }}"
+        template: "{{ templatetoadd }}"
+    register: zabbix_result
+
+  - name: "Debug"
+    debug:
+      var: zabbix_result
+
+
+
+

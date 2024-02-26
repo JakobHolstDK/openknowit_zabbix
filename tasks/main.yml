@@ -1,0 +1,41 @@
+---
+- name: Zabbix get psk 
+  slurp:
+    src: /etc/zabbix/zabbix_agent.psk
+  register: zabbix_agent_psk_file
+  changed_when: False
+  failed_when: False
+
+- name: Set zabbix agent psk
+  set_fact:
+    zabbix_agent_psk: "{{ zabbix_agent_psk_file.content | b64decode }}"
+  changed_when: False
+  failed_when: False
+  
+- name: debug the psk
+  debug:
+    msg: "{{ zabbix_agent_psk }}"
+  changed_when: False
+  failed_when: False
+
+- name: Zabbix API
+  become: false
+  delegate_to: localhost
+  module_defaults:
+    zabbix_json_rpc:
+      hostname: "{{ zabbix_httpapi_host }}"
+      token: "{{ zabbix_httpapi_token }}"
+    zabbix_resource:
+      hostname: "{{ zabbix_httpapi_host }}"
+      token: "{{ zabbix_httpapi_token }}"
+  throttle: 1
+  block:
+    - name: get host data from zabbix
+      zabbix_resource:
+        state: present
+        resource: host
+        name: "{{ ansible_hostname }}"
+
+
+
+

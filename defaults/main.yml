@@ -1,0 +1,25 @@
+---
+zabbix_host_port: '10050'
+zabbix_default_status: '1'
+zabbix_tls_accept: 2
+zabbix_tls_connect: 2
+zabbix_agent_tlspskidentity: "{{ inventory_hostname | lower }}"
+zabbix_force_update_templates: false
+zabbix_host_macros: []
+
+zabbix_systemrole_template_name: "Template {{ system }}{{ system_role }}"
+zabbix_host_tags:
+  - tag: env
+    value: "{{ env }}"
+  - tag: site
+    value: "{{ site | lower }}"
+  - tag: os
+    value: "{{ ansible_os | lower }}"
+  - tag: system
+    value: "{{ system | lower }}"
+  - tag: role
+    value: "{{ systemrole | lower }}"
+  - tag: owner
+    value: "{{ tenant | lower }}"
+  - tag: hw
+    value: "{{ is_virtual | ternary('virtual', 'metal') }}"

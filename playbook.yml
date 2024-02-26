@@ -1,0 +1,36 @@
+---
+- name: zabbix_template_mapping
+  hosts: all
+  gather_facts: yes
+  vars:
+    zabbixhost: "zabbix.openknowit.com"
+    zabbixtoken: "4244f09b4d3b852f96336fce2a439e747caffee07cab9890d42bcd3f45a431b9"
+    templatetoadd: "ICMP Ping"
+    templatetoremove: "Template Horizion View Services"
+    systemroletemplate: "Template dashdb"
+
+
+
+  tasks:
+  - name: "Get Zabbix Host ID"
+    zabbix_wrapper:
+      hostname: "{{ zabbixhost }}"
+      token: "{{ zabbixtoken }}"
+      task: "create_host"
+      params: 
+        hostname: "Demoserver"
+        groups: 
+          - "Ansible Automation"
+
+    register: zabbix_result
+
+
+  - name: "Debug"
+    debug:
+      var: zabbix_result
+
+
+
+
+
+
