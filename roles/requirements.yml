@@ -1,12 +1,5 @@
 ---
 roles:
-   - src: git@github.com:JakobHolstDK/zabbix_template_mapping.git
-     scm: git
-     version: "main"
-
-   - src: git@github.com:JakobHolstDK/common_modules.git
-     scm: git
-     version: "main"
 
 
 
