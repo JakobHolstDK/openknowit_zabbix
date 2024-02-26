@@ -1,0 +1,5 @@
+- name: "Checkup"
+  hosts: all
+  tasks:
+  - name: "uptime"
+    command: uptime
