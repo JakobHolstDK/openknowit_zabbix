@@ -1,6 +1,6 @@
 ---
 - name: zabbix_template_mapping
-  hosts: all
+  hosts: zabbix
   gather_facts: no
   vars:
     zabbixhost: "zabbix.it.ku.dk"
