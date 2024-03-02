@@ -1,0 +1,19 @@
+---
+- name: Sign ssh key
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+  - name: "Sign SSH key"
+    signssh
+      vault_addr: "{{ vault_addr }}"
+      vault_token: "{{ vault_token }}"
+      task: "auto"
+      params: 
+        remark: "ansible"
+
+    register: signssh
+  
+  - debug:
+      var: signssh
+      
