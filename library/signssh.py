@@ -75,6 +75,12 @@ def main():
         changed = True
         module.exit_json(changed=changed, signed_key=signed_key)
 
+    module.exit_json(changed=changed, result=response.get('result'))
+
+
+if __name__ == '__main__':
+    main()
+
     
 
 
