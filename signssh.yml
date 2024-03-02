@@ -5,7 +5,7 @@
 
   tasks:
   - name: "Sign SSH key"
-    signssh
+    signssh:
       vault_addr: "{{ vault_addr }}"
       vault_token: "{{ vault_token }}"
       task: "auto"
