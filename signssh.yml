@@ -13,7 +13,6 @@
         remark: "ansible"
 
     register: signssh
-  
-  - debug:
+  - name: "Debug signssh"
+  debug:
       var: signssh
-      
