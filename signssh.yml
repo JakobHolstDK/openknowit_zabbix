@@ -14,5 +14,5 @@
 
     register: signssh
   - name: "Debug signssh"
-  debug:
+    debug:
       var: signssh
