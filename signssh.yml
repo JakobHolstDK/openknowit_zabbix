@@ -5,6 +5,7 @@
 
   tasks:
   - name: "Sign SSH key"
+    delegate_to: localhost
     signssh:
       vault_addr: "{{ vault_addr }}"
       vault_token: "{{ vault_token }}"
