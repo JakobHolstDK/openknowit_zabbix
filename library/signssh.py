@@ -11,7 +11,7 @@ RETURN = '''
 '''
 
 
-def signssh(sshkey, vault_addr, vault_token, vault_ca):
+def signssh(sshkey, vault_addr, vault_token):
     headers = {
         'X-Vault-Token': vault_token,
         'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ def signssh(sshkey, vault_addr, vault_token, vault_ca):
         'valid_principals': 'root',
     }
 
-    response = requests.post(f'{vault_addr}/v1/ssh-client-signer/sign/client', headers=headers, data=json.dumps(data), verify=vault_ca)
+    response = requests.post(f'{vault_addr}/v1/ssh-client-signer/sign/client', headers=headers, data=json.dumps(data), verify=True)
     response.raise_for_status()
     return response.json()['data']['signed_key']
 
