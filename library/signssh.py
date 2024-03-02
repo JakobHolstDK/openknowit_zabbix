@@ -43,7 +43,7 @@ def main():
     module = AnsibleModule(
         argument_spec=dict(
             vault_addr=dict(required=True, type='str'),
-            token=dict(required=True, type='str', no_log=True),
+            vault_token=dict(required=True, type='str', no_log=True),
             method=dict(required=True, type='str'),
             params=dict(required=True, type='dict'),
         ),
