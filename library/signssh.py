@@ -67,6 +67,14 @@ def main():
         'Authorization': f"Bearer {token}"
     }
 
+    if method == "test":
+        response = {
+            "result": "test"
+        }
+        changed = False
+        module.exit_json(changed=changed, result="test")
+        
+
     if method == "auto":
         # The signing will be on a "fresh ip key generated and stored i ~/.ssh/disposeable and the signed key i ~/.ssh/disposeable.signed
         filename = "/tmp/disposeable"

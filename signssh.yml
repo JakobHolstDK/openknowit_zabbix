@@ -9,7 +9,7 @@
     signssh:
       vault_addr: "{{ vault_addr }}"
       vault_token: "{{ vault_token }}"
-      method: "auto"
+      method: "test"
       params: 
         remark: "ansible"
 
