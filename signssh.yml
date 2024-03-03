@@ -5,10 +5,10 @@
 
   tasks:
    - name: "Tell subsequent tasks to use our deploy virtualenv"
-      set_fact:
-        ansible_python_interpreter: /root/venv/bin/python
-      tags:
-        - always
+     set_fact:
+      ansible_python_interpreter: /root/venv/bin/python
+     tags:
+      - always
 
   - name: "Sign SSH key"
     delegate_to: localhost
