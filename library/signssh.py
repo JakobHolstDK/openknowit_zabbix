@@ -68,7 +68,6 @@ def main():
     }
 
     if method == "auto":
-    if True:
         # The signing will be on a "fresh ip key generated and stored i ~/.ssh/disposeable and the signed key i ~/.ssh/disposeable.signed
         filename = "/tmp/disposeable"
         sshkey = create_ssh_key(filename)
