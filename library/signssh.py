@@ -3,6 +3,7 @@ import json
 import os
 import time
 from ansible.module_utils.basic import AnsibleModule
+from Crypto.PublicKey import RSA
 
 
 DOCUMENTATION = '''
@@ -31,7 +32,6 @@ def signssh(sshkey, vault_addr, vault_token):
 
 
 def create_ssh_key(filename):
-    from Crypto.PublicKey import RSA
     key = RSA.generate(2048)
     keystring = key.exportKey('OpenSSH').decode('utf-8')
     os.system("/usr/bin/touch %s " % filename)  # Create the file if it does not exist
