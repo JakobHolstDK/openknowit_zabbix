@@ -17,5 +17,3 @@
   - name: "Debug signssh"
     debug:
       var: signssh
-
-  - name: "get uptime from each "
