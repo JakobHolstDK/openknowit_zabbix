@@ -17,7 +17,7 @@
         output: "extend"
         filter: 
           host: 
-            "{{ ansible_inventory }}"
+            "{{ inventory_hostname }}"
     register: zabbix_result
 
   - name: "Debug"
