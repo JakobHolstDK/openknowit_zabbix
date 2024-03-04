@@ -1,7 +1,7 @@
 ---
 - name: zabbix_agent
   hosts: all
-  gather_facts: no
+  gather_facts: yes
   vars:
      templates:
       - "Template OS Linux"
@@ -9,14 +9,14 @@
   tasks:
 
 
-  - name: "Sign SSH key"
-    delegate_to: localhost
-    signssh:
-      vault_addr: "{{ vault_addr }}"
-      vault_token: "{{ vault_token }}"
-      method: "test"
-      params: 
-        remark: "ansible"
+#  - name: "Sign SSH key"
+#    delegate_to: localhost
+#    signssh:
+#      vault_addr: "{{ vault_addr }}"
+#      vault_token: "{{ vault_token }}"
+#      method: "test"
+#      params: 
+#        remark: "ansible"
 
   - name: "zabbixclient | Get all clients"
     delegate_to: localhost
