@@ -7,7 +7,7 @@
       - "Template OS Linux"
 
   tasks:
-  - name: "Install zabbix agent on zabbix server"
+  - name: "zabbixclient | Get all clients"
     delegate_to: localhost
     zabbix_json_rpc:
       hostname: "{{ zabbixhost }}"
@@ -15,6 +15,9 @@
       method: host.get
       params:
         output: "extend"
+        filter: 
+          host: 
+            "{{ ansible_inventory }}"
     register: zabbix_result
 
   - name: "Debug"
