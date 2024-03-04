@@ -1,0 +1,28 @@
+---
+- name: zabbix_agent
+  hosts: all
+  gather_facts: no
+  vars:
+     zabbixhost: "https://exrhel0403.it.rm.dk"
+     zabbixtoken: "123123123123123123123123123"
+     zabbixmgmt: "https://exrhel0388.it.rm.dk:5000"
+     zabbixmgmttoken: "123123123123123123"
+     templates:
+      - "Template OS Linux"
+
+  tasks:
+  - name: "Install zabbix agent on zabbix server"
+    delegate_to: localhost
+    zabbix_json_rpc:
+      hostname: "{{ zabbixhost }}"
+      token: "{{ zabbixtoken }}"
+      method: get.host
+      params:
+        output: "extend"
+    register: zabbix_result
+
+  - name: "Debug"
+    debug:
+      var: zabbix_result
+
+
