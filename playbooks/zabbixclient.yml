@@ -1,7 +1,7 @@
 ---
 - name: zabbix_agent
   hosts: all
-  gather_facts: no
+  gather_facts: yes
   vars:
      templates:
       - "Template OS Linux"
@@ -20,8 +20,25 @@
             "{{ inventory_hostname }}"
     register: zabbix_result
 
-  - name: "Debug"
-    debug:
+  - name: "zabbixclient | Create client if not exists"
+    delegate_to: localhost
+    zabbix_json_rpc:
+      hostname: "{{ zabbixhost }}"
+      token: "{{ zabbixtoken }}"
+      method: host.create
+      params:
+        host: "{{ inventory_hostname }}"
+        interfaces:
+          - type: 1
+            main: 1
+            useip: 1
+            ip: "{{ ansible_default_ipv4.address }}"
+            dns: ""
+            port: 10050
+        groups:
+          - groupid: 2
+        templates:
+          - templateid: "{{ item }}"
       var: zabbix_result
 
 
