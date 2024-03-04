@@ -1,7 +1,7 @@
 ---
 - name: zabbix_agent
   hosts: all
-  gather_facts: yes
+  gather_facts: no
   vars:
      templates:
       - "Template OS Linux"
@@ -17,7 +17,7 @@
       method: "test"
       params: 
         remark: "ansible"
-        
+
   - name: "zabbixclient | Get all clients"
     delegate_to: localhost
     zabbix_json_rpc:
