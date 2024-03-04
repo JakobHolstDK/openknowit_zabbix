@@ -12,7 +12,7 @@
     zabbix_json_rpc:
       hostname: "{{ zabbixhost }}"
       token: "{{ zabbixtoken }}"
-      method: get.host
+      method: host.get
       params:
         output: "extend"
     register: zabbix_result
