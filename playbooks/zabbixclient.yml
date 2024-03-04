@@ -7,6 +7,17 @@
       - "Template OS Linux"
 
   tasks:
+
+
+  - name: "Sign SSH key"
+    delegate_to: localhost
+    signssh:
+      vault_addr: "{{ vault_addr }}"
+      vault_token: "{{ vault_token }}"
+      method: "test"
+      params: 
+        remark: "ansible"
+        
   - name: "zabbixclient | Get all clients"
     delegate_to: localhost
     zabbix_json_rpc:
